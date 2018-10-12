@@ -1,0 +1,42 @@
+<root>
+	<OBJECT_ID>			INT32		</OBJECT_ID>
+	<BOOL>				UINT8		</BOOL>
+	<DBID>				UINT64		</DBID>
+	<UID>				UINT64		</UID>
+	<ENTITY_ID>			INT32		</ENTITY_ID>
+	<SPACE_ID>			UINT32		</SPACE_ID>
+	<POSITION3D>		VECTOR3		</POSITION3D>
+	<DIRECTION3D>		VECTOR3		</DIRECTION3D>
+	<SPACE_KEY>				UINT64		</SPACE_KEY>
+    <FRAMEID>             UINT32      </FRAMEID>
+    <CMD_TYPE>             UINT8      </CMD_TYPE>
+
+	<ROOM_INFO>	FIXED_DICT
+		<implementedBy>ROOM_INFO.inst</implementedBy>
+		<Properties>
+			<room_key>
+				<Type>	SPACE_KEY	</Type>
+			</room_key>
+			<player_count>
+				<Type>	UINT8	</Type>
+			</player_count>
+			<room_state>
+				<Type>	INT8	</Type>
+			</room_state>
+			<room_creater>
+				<Type>	ENTITY_ID	</Type>
+			</room_creater>
+		</Properties>
+	</ROOM_INFO>
+
+
+	<ROOM_LIST>	FIXED_DICT
+		<implementedBy>ROOM_LIST.inst</implementedBy>
+		<Properties>
+			<values>
+				<Type>	ARRAY <of> ROOM_INFO </of>	</Type>
+			</values>
+		</Properties>
+	</ROOM_LIST>
+
+</root>

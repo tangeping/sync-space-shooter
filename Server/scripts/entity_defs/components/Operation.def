@@ -1,0 +1,80 @@
+<root>
+	<Properties>
+		<winScore>
+			<Type>		INT32				</Type>
+			<Flags>		OWN_CLIENT			</Flags>
+			<Persistent>		true		</Persistent>
+			<Default>		0				</Default>
+		</winScore>
+
+		<lossScore>
+			<Type>		INT32				</Type>
+			<Flags>		OWN_CLIENT			</Flags>
+			<Persistent>		true		</Persistent>
+			<Default>		0				</Default>
+		</lossScore>
+	</Properties>
+	
+	<CellMethods>
+		<reqTrueSyncData>
+			<Exposed/>
+			<Arg>			UINT8 			</Arg>
+			<Arg>			UNICODE 	    </Arg>
+		</reqTrueSyncData>
+
+	</CellMethods>
+
+	<BaseMethods>
+		<reqRoomList>
+			<Exposed/>
+		</reqRoomList>
+
+		<reqEnterRoom>
+			<Exposed/>
+			<Arg>			SPACE_KEY 			</Arg>
+		</reqEnterRoom>
+
+		<reqLeaveRoom>
+			<Exposed/>
+		</reqLeaveRoom>
+
+		<reqCreateRoom>
+			<Exposed/>
+		</reqCreateRoom>
+
+		<reqGameBegin>
+			<Exposed/>
+		</reqGameBegin>
+	</BaseMethods>
+
+	<ClientMethods>
+
+	    <onReqRoomList>
+        	<Arg>			ROOM_LIST	</Arg>
+        </onReqRoomList>
+
+        <onEnterRoomResult>
+        	<Arg>			UINT8 			</Arg>
+			<Arg>			ROOM_INFO 		</Arg>
+        </onEnterRoomResult>
+
+        <onLeaveRoomResult>
+        	<Arg>			UINT8 			</Arg>
+        </onLeaveRoomResult>
+
+        <onGameBeginResult>
+        	<Arg>			UINT8 			</Arg>
+        </onGameBeginResult>
+
+        <onCreateRoomResult>
+        	<Arg>			UINT8 			</Arg>
+			<Arg>			ROOM_INFO 		</Arg>
+        </onCreateRoomResult>
+
+        <onTrueSyncData>
+        	<Arg>			UINT8 			</Arg>
+			<Arg>			UNICODE 	    </Arg>
+        </onTrueSyncData>
+
+	</ClientMethods>
+</root>

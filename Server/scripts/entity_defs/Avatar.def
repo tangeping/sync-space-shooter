@@ -1,0 +1,47 @@
+<root>
+	<Interfaces>
+		<Interface>	EntityCommon		</Interface>
+	</Interfaces>
+
+	<Properties>
+		<name>
+			<Type>		UNICODE			</Type>
+			<Flags>		ALL_CLIENTS			</Flags>
+			<Persistent>		true				</Persistent>
+			<DetailLevel>		MEDIUM			</DetailLevel>
+		</name>
+
+		<dbid>
+			<Type>		DBID				</Type>
+			<Flags>		CELL_PUBLIC			</Flags>
+			<Default>		0				</Default>
+		</dbid>
+
+	</Properties>
+
+  	<Components>
+
+		<component1>			
+			<Type> 			Operation					</Type>
+			<Persistent>	true						</Persistent>
+		</component1>
+
+  	</Components>
+
+
+
+	<BaseMethods>
+		<createCell>
+			<Arg>		ENTITYCALL					</Arg>
+		</createCell>
+
+		<isInRoom>
+		</isInRoom>
+	</BaseMethods>
+
+	<CellMethods>
+	</CellMethods>
+
+	<ClientMethods>
+	</ClientMethods>
+</root>
