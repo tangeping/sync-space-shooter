@@ -37,6 +37,11 @@
 
 		<isInRoom>
 		</isInRoom>
+
+		<setCurrRoomKey>
+			<Arg>		SPACE_KEY					</Arg>
+		</setCurrRoomKey>
+		
 	</BaseMethods>
 
 	<CellMethods>

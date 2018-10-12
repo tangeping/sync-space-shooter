@@ -12,9 +12,5 @@
 		</modelRadius>
 	</Properties>
 
-	<CellMethods>
-		<getCurrRoom>
-		</getCurrRoom>
-	</CellMethods>
 </root>
 

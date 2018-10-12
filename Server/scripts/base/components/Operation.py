@@ -11,7 +11,7 @@ class Operation(KBEngine.EntityComponent):
 	"""docstring for Operation"""
 	def __init__(self):
 		KBEngine.EntityComponent.__init__(self)
-		self.currRoomEntity = None
+		
 
 	def onAttached(self, owner):
 		"""
@@ -94,6 +94,7 @@ class Operation(KBEngine.EntityComponent):
 		roomInfo = self.onRoomInfo(roomData)
 		if roomInfo is None:
 			return
+
 		self.client.onCreateRoomResult(0,roomInfo)
 
 	def reqEnterRoom(self,roomKey):
@@ -112,48 +113,8 @@ class Operation(KBEngine.EntityComponent):
 			result = GameConfigs.EROOR_ROOM_CREATIN
 		elif self.owner.isInRoom():
 			result = GameConfigs.EROOR_ROOM_ENTERED
-
-		self.currRoomEntity = roomData['roomEntityCall']
 			
 		self.client.onEnterRoomResult(result,roomInfo)			
 		KBEngine.globalData["Halls"].enterRoom(self.owner, (0.0,0.0,0.0), (0.0,0.0,0.0), roomKey)	
 		DEBUG_MSG("Operation[%i].reqEnterRoom: " % (self.ownerID))
 
-	def reqLeaveRoom(self):
-		"""
-		exposed.
-		客户端请求退出房间
-		"""
-		result = GameConfigs.RESULT_OK
-
-		if self.currRoomEntity is None:
-			result = GameConfigs.EROOR_ROOM_DESTORYED
-
-		KBEngine.globalData["Halls"].leaveRoom(self.ownerID, self.currRoomEntity.roomKey)
-		
-		if self.owner.isInRoom():
-			result = GameConfigs.EROOR_ROOM_EXIT_FAIL
-		else:
-			self.currRoomEntity = None
-
-		self.client.onLeaveRoomResult(result)
-
-		DEBUG_MSG("Operation[%i].reqLeaveRoom: " % (self.ownerID))
-
-	def reqGameBegin(self):
-		"""
-		exposed.
-		客户端请求开始游戏
-		"""
-		state = GameConfigs.ROOM_STATE_FREE
-
-		if self.currRoomEntity is None:
-			return
-
-		if self.currRoomEntity.roomState != GameConfigs.ROOM_STATE_FREE:
-			state = self.currRoomEntity.roomState
-
-		self.currRoomEntity.roomState = GameConfigs.ROOM_STATE_PLAYING
-		self.client.onGameBeginResult(state)
-
-		DEBUG_MSG("Operation[%i].reqGameBegin: " % (self.ownerID))

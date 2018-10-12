@@ -18,7 +18,14 @@ class Room(KBEngine.Entity):
 		# 请求在cellapp上创建cell空间
 		self.createCellEntityInNewSpace(None)
 
+	def stateChange(self,state):
+		'''
+		房间状态
+		'''
+		if self.roomState != state:
+			self.roomState = state
 
+	
 
 	def enterRoom(self, entityCall, position, direction):
 		"""

@@ -17,6 +17,8 @@ class Avatar(KBEngine.Proxy):
 
 		self._destroyTimer = 0
 
+		self.currRoomKey = 0
+
 	def createCell(self, space, roomKey):
 		"""
 		defined method.
@@ -24,24 +26,18 @@ class Avatar(KBEngine.Proxy):
 		"""
 		self.createCellEntity(space)
 
+
+	def setCurrRoomKey(self,roomKey):
+		if self.currRoomKey != roomKey:
+			self.currRoomKey = roomKey
+
+
 	def isInRoom(self):
 		"""
 		是否在房间内
 		"""
-		if self.cell is None:
-			return False
-		room = self.cell.getCurrRoom()
-		if room is None:
-			return False
+		return self.currRoomKey != 0
 
-		return room.isInRoom(self.id)
-
-	def getCurrRoom(self):
-		'''
-		'''
-		if self.cell is None:
-			return None
-		return self.cell.getCurrRoom()
 
 	def destroySelf(self):
 		"""

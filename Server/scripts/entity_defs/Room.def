@@ -13,8 +13,8 @@
 
 		<roomState>
 			<Type>			INT8				</Type>
-			<Flags>			BASE			</Flags>
-			<Persistent>			true		</Persistent>
+			<Flags>			BASE				</Flags>
+			<Persistent>	true				</Persistent>
 			<Default>		0					</Default>
 		</roomState>
 
@@ -34,7 +34,10 @@
 			<Arg>		ENTITY_ID		</Arg>
 		</leaveRoom>
 
-
+		<stateChange>
+			<Arg>		INT8		</Arg>
+		</stateChange>
+		
 	</BaseMethods>
 
 	<CellMethods>

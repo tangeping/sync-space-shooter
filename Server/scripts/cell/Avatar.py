@@ -80,6 +80,7 @@ class Avatar(KBEngine.Entity, EntityCommon):
 
 		if room:
 			room.onLeave(self.id)
+			
 
 	def relive(self, exposed, type):
 		"""

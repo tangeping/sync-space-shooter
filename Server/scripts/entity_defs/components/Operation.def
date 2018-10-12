@@ -19,8 +19,16 @@
 		<reqTrueSyncData>
 			<Exposed/>
 			<Arg>			UINT8 			</Arg>
-			<Arg>			UNICODE 	    </Arg>
+			<Arg>			BLOB 	    </Arg>
 		</reqTrueSyncData>
+
+		<reqGameBegin>
+			<Exposed/>
+		</reqGameBegin>
+
+		<reqLeaveRoom>
+			<Exposed/>
+		</reqLeaveRoom>
 
 	</CellMethods>
 
@@ -34,17 +42,10 @@
 			<Arg>			SPACE_KEY 			</Arg>
 		</reqEnterRoom>
 
-		<reqLeaveRoom>
-			<Exposed/>
-		</reqLeaveRoom>
-
 		<reqCreateRoom>
 			<Exposed/>
 		</reqCreateRoom>
 
-		<reqGameBegin>
-			<Exposed/>
-		</reqGameBegin>
 	</BaseMethods>
 
 	<ClientMethods>
@@ -73,7 +74,7 @@
 
         <onTrueSyncData>
         	<Arg>			UINT8 			</Arg>
-			<Arg>			UNICODE 	    </Arg>
+			<Arg>			BLOB 	    	</Arg>
         </onTrueSyncData>
 
 	</ClientMethods>

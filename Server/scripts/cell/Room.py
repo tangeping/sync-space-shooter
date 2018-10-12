@@ -26,6 +26,10 @@ class Room(KBEngine.Entity):
 
 		self.avatars = {}
 
+		self.state = GameConfigs.ENTITY_STATE_UNKNOW
+
+		self.onStateChange(GameConfigs.ROOM_STATE_FREE)
+
 		# 告诉客户端加载地图
 		KBEngine.addSpaceGeometryMapping(self.spaceID, None, "spaces/gameMap")
 
@@ -34,6 +38,14 @@ class Room(KBEngine.Entity):
 		# 让baseapp和cellapp都能够方便的访问到这个房间的entityCall
 		KBEngine.globalData["Room_%i" % self.spaceID] = self.base
 
+	def onStateChange(self,state):
+		'''
+		'''
+		if self.state != state:
+			self.state = state
+			self.base.stateChange(state)
+
+		
 	def isInRoom(self,entityID):
 		'''
 		玩家是否在房间内
@@ -80,6 +92,7 @@ class Room(KBEngine.Entity):
 		"""
 		DEBUG_MSG('Room-cell::onEnter space[%d] entityID = %i.' % (self.spaceID, entityCall.id))
 		self.avatars[entityCall.id] = entityCall
+		entityCall.base.setCurrRoomKey(self.roomKeyC)
 
 	def onLeave(self, entityID):
 		"""
@@ -88,7 +101,7 @@ class Room(KBEngine.Entity):
 		"""
 		DEBUG_MSG('Room::onLeave space[%d] entityID = %i.' % (self.spaceID, entityID))
 		del self.avatars[entityID]
-
+		entityCall.base.setCurrRoomKey(0)
 
 
 	def broadMessage(self,eventCode, message):
