@@ -36,8 +36,8 @@ public class RealSyncCommunicator : ICommunicator
         //NetMgr.Instance.srvConn.Send(proto);
 
         byte[] data = Trans.Object2Bytes(message); 
-        string str = System.Text.Encoding.Default.GetString(data);
-        KBEngine.Event.fireIn("reqTrueSyncData", new object[] { eventCode,message.ToString() });
+        //string str = System.Text.Encoding.Default.GetString(data);
+        KBEngine.Event.fireIn("reqTrueSyncData", new object[] { eventCode, data });
     }
 
     /// <summary>

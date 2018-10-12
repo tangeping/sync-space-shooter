@@ -29,6 +29,7 @@ public class WorldEvent : MonoBehaviour {
             {
                 GameData.Instance.RoomPlayers[0] = (KBEngine.Avatar)entity;
             }
+            GameData.Instance.PlayerReady.Add(entity.id, false);
         }
         else if(entity.className == "Avatar")
         {
@@ -37,7 +38,7 @@ public class WorldEvent : MonoBehaviour {
                 GameData.Instance.RoomPlayers.Add(new KBEngine.Avatar());   
             }
             GameData.Instance.RoomPlayers.Add((KBEngine.Avatar)entity);
-
+            GameData.Instance.PlayerReady.Add(entity.id, false);
         }
 
     }

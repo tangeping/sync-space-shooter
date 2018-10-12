@@ -63,7 +63,7 @@
 
         public override void onGameBeginResult(byte result)
         {
-            KBEngine.Event.fireOut("onGameBeginResult", new object[] { result});
+            KBEngine.Event.fireOut("onGameBeginResult", new object[] {this.ownerID, result});
             Debug.Log("Operation::onGameBeginResult: " + "result:" + result);
         }
 
@@ -79,13 +79,13 @@
             Debug.Log("Operation::onCreateRoomResult: " + "result:" + result);
         }
 
-        public override void onTrueSyncData(byte eventCode, string message)
+        public override void onTrueSyncData(byte eventCode, byte[] message)
         {
             KBEngine.Event.fireOut("onTrueSyncData", new object[] {this.owner, eventCode, message });
             Debug.Log("Operation::onTrueSyncData: " + "eventCode:" + eventCode + ",message:"+ message);
         }
 
-        public void reqTrueSyncData(byte eventCode, string message)
+        public void reqTrueSyncData(byte eventCode, byte[] message)
         {
             Debug.Log("Operation::reqTrueSyncData:eventCode:"+ eventCode + ",message:"+ message);
             cellEntityCall.reqTrueSyncData(eventCode, message);          
@@ -103,21 +103,23 @@
             baseEntityCall.reqEnterRoom(roomKey);
         }
 
-        public void reqGameBegin()
-        {
-            Debug.Log("Operation::reqGameBegin" );
-            baseEntityCall.reqGameBegin();
-        }
+
         public void reqCreateRoom()
         {
             Debug.Log("Operation::reqCreateRoom " );
             baseEntityCall.reqCreateRoom();
         }
 
+        public void reqGameBegin()
+        {
+            Debug.Log("Operation::reqGameBegin");
+            cellEntityCall.reqGameBegin();
+        }
+
         public void reqLeaveRoom()
         {
             Debug.Log("Operation::reqLeaveRoom " );
-            baseEntityCall.reqLeaveRoom();
+            cellEntityCall.reqLeaveRoom();
         }
 
 

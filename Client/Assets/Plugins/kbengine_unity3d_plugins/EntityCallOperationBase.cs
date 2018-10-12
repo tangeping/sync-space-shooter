@@ -42,24 +42,6 @@ namespace KBEngine
 			sendCall(null);
 		}
 
-		public void reqGameBegin()
-		{
-			Bundle pBundle = newCall("reqGameBegin", entityComponentPropertyID);
-			if(pBundle == null)
-				return;
-
-			sendCall(null);
-		}
-
-		public void reqLeaveRoom()
-		{
-			Bundle pBundle = newCall("reqLeaveRoom", entityComponentPropertyID);
-			if(pBundle == null)
-				return;
-
-			sendCall(null);
-		}
-
 		public void reqRoomList()
 		{
 			Bundle pBundle = newCall("reqRoomList", entityComponentPropertyID);
@@ -82,14 +64,32 @@ namespace KBEngine
 			type = ENTITYCALL_TYPE.ENTITYCALL_TYPE_CELL;
 		}
 
-		public void reqTrueSyncData(Byte arg1, string arg2)
+		public void reqGameBegin()
+		{
+			Bundle pBundle = newCall("reqGameBegin", entityComponentPropertyID);
+			if(pBundle == null)
+				return;
+
+			sendCall(null);
+		}
+
+		public void reqLeaveRoom()
+		{
+			Bundle pBundle = newCall("reqLeaveRoom", entityComponentPropertyID);
+			if(pBundle == null)
+				return;
+
+			sendCall(null);
+		}
+
+		public void reqTrueSyncData(Byte arg1, byte[] arg2)
 		{
 			Bundle pBundle = newCall("reqTrueSyncData", entityComponentPropertyID);
 			if(pBundle == null)
 				return;
 
 			bundle.writeUint8(arg1);
-			bundle.writeUnicode(arg2);
+			bundle.writeBlob(arg2);
 			sendCall(null);
 		}
 

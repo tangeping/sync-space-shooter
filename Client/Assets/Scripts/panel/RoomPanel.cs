@@ -34,54 +34,6 @@ public class RoomPanel : PanelBase
         KBEngine.Event.deregisterOut(this);
     }
 
-    public void onEnterWorld(KBEngine.Entity entity)
-    {
-        Debug.Log("RoomPanel:entity." + entity.id + ",claseName:" + entity.className);
-
-        Transform trans = null;
-
-        if (entity.isPlayer())
-        {
-            trans = prefabs[0];
-            trans.gameObject.SetActive(true);
-
-        }
-        else if(entity.className == "Avatar")
-        {
-            for(int i = 1; i < prefabs.Count;i++)
-            {
-                if(prefabs[i].gameObject.activeSelf == false)
-                {
-                    trans = prefabs[i];
-                    trans.gameObject.SetActive(true);
-                    break;
-                }
-            }          
-        }
-        if(trans == null)
-        {
-            return;
-        }
-        
-        if(entity.className == "Avatar")
-        {
-            Image image = trans.GetComponent<Image>();
-            image.color = Color.red;
-            Text text = trans.Find("Text").GetComponent<Text>();
-
-            Int32 win = ((KBEngine.Avatar)entity).component1.winScore;
-            Int32 loss = ((KBEngine.Avatar)entity).component1.lossScore;
-
-            string str = "名字：" + entity.id + "\r\n";
-            str += "胜利：" + win.ToString() + "   ";
-            str += "失败：" + loss.ToString() + "\r\n";
-            text.text = str;
-
-            entity.renderObj = trans.gameObject;
-        }
-        
-    }
-
     public override void OnShowing()
     {
         base.OnShowing();
@@ -94,11 +46,15 @@ public class RoomPanel : PanelBase
             //prefab.gameObject.SetActive(false);
             prefabs.Add(prefab);
         }
-        closeBtn = skinTrans.Find("CloseBtn").GetComponent<Button>();
-        startBtn = skinTrans.Find("StartBtn").GetComponent<Button>();
-        //按钮事件
-        closeBtn.onClick.AddListener(OnCloseClick);
-        startBtn.onClick.AddListener(OnStartClick);
+
+        if (GameData.Instance.IsCreater())
+        {
+            closeBtn = skinTrans.Find("CloseBtn").GetComponent<Button>();
+            startBtn = skinTrans.Find("StartBtn").GetComponent<Button>();
+            //按钮事件
+            closeBtn.onClick.AddListener(OnCloseClick);
+            startBtn.onClick.AddListener(OnStartClick);
+        }
         //监听
         //NetMgr.Instance.srvConn.msgDist.AddListener("GetRoomInfo", RecvGetRoomInfo);
         //NetMgr.Instance.srvConn.msgDist.AddListener("Fight", RecvFight);
@@ -179,13 +135,14 @@ public class RoomPanel : PanelBase
         KBEngine.Event.fireIn("reqGameBegin", new object[] { });
     }
 
-    public void onGameBeginResult(byte result)
+    public void onGameBeginResult(Int32 entityID, byte result)
     {
         //处理
         if (result != 0)
         {
             PanelMgr.instance.OpenPanel<TipPanel>("", "开始游戏失败！两队至少都需要一名玩家，只有队长可以开始战斗！");
         }
+
         RecvFight();
     }
 
@@ -205,7 +162,7 @@ public class RoomPanel : PanelBase
 
     public void FixedUpdate()
     {
-        if(GameData.Instance.RoomPlayers.Count > 0 && PannelInit == false)
+        if(GameData.Instance.RoomPlayers.Count > 0/* && PannelInit == false*/)
         {
             PannelInit = true;
             RecvGetRoomInfo();

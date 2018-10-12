@@ -75,7 +75,7 @@ public class SpaceBattle
     /// <summary>
     /// 处理接收到的 TrueSync 消息
     /// </summary>
-    public void onTrueSyncData(KBEngine.Entity entity, byte eventCode,string message)
+    public void onTrueSyncData(KBEngine.Entity entity, byte eventCode, byte[] message)
     {
         // 解析协议
         //         int start = 0;
@@ -84,9 +84,12 @@ public class SpaceBattle
         //         string unused = proto.GetString(start, ref start);
         //         byte eventCode = proto.GetByte(start, ref start);
         //         byte[] data = proto.GetBytes(start, ref start);
+        // TODO: 事件编码和发送玩家 ID 暂时写死（协议内容中可以解析到每个指令的玩家 ID）
+        //OnEventCall(eventCode, data, -1);
+
         Debug.Log("SpaceBattle.onTrueSyncData,entiy." + entity.id + ",eventCode:" + eventCode + ",message:" + message+ ",Length:" + message.Length);
-        byte[] data = System.Text.Encoding.Default.GetBytes(message);
-        object content = Trans.Bytes2Object(data);
+        //byte[] data = System.Text.Encoding.Default.GetBytes(message);
+        object content = Trans.Bytes2Object(message);
         //object content = data as object;
 
         OnEventCall(eventCode, content, entity.id);

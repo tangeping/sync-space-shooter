@@ -320,7 +320,7 @@ namespace KBEngine
 
 			List<DATATYPE_BASE> pOperation_onTrueSyncData_args = new List<DATATYPE_BASE>();
 			pOperation_onTrueSyncData_args.Add(EntityDef.id2datatypes[2]);
-			pOperation_onTrueSyncData_args.Add(EntityDef.id2datatypes[12]);
+			pOperation_onTrueSyncData_args.Add(EntityDef.id2datatypes[11]);
 
 			Method pOperation_onTrueSyncData = new Method();
 			pOperation_onTrueSyncData.name = "onTrueSyncData";
@@ -338,7 +338,7 @@ namespace KBEngine
 
 			Method pOperation_reqCreateRoom = new Method();
 			pOperation_reqCreateRoom.name = "reqCreateRoom";
-			pOperation_reqCreateRoom.methodUtype = 8;
+			pOperation_reqCreateRoom.methodUtype = 9;
 			pOperation_reqCreateRoom.aliasID = -1;
 			pOperation_reqCreateRoom.args = pOperation_reqCreateRoom_args;
 
@@ -347,14 +347,14 @@ namespace KBEngine
 
 			pOperationModule.idbase_methods[pOperation_reqCreateRoom.methodUtype] = pOperation_reqCreateRoom;
 
-			//Dbg.DEBUG_MSG("EntityDef::initScriptModules: add(Operation), method(reqCreateRoom / 8).");
+			//Dbg.DEBUG_MSG("EntityDef::initScriptModules: add(Operation), method(reqCreateRoom / 9).");
 
 			List<DATATYPE_BASE> pOperation_reqEnterRoom_args = new List<DATATYPE_BASE>();
 			pOperation_reqEnterRoom_args.Add(EntityDef.id2datatypes[5]);
 
 			Method pOperation_reqEnterRoom = new Method();
 			pOperation_reqEnterRoom.name = "reqEnterRoom";
-			pOperation_reqEnterRoom.methodUtype = 6;
+			pOperation_reqEnterRoom.methodUtype = 8;
 			pOperation_reqEnterRoom.aliasID = -1;
 			pOperation_reqEnterRoom.args = pOperation_reqEnterRoom_args;
 
@@ -363,43 +363,13 @@ namespace KBEngine
 
 			pOperationModule.idbase_methods[pOperation_reqEnterRoom.methodUtype] = pOperation_reqEnterRoom;
 
-			//Dbg.DEBUG_MSG("EntityDef::initScriptModules: add(Operation), method(reqEnterRoom / 6).");
-
-			List<DATATYPE_BASE> pOperation_reqGameBegin_args = new List<DATATYPE_BASE>();
-
-			Method pOperation_reqGameBegin = new Method();
-			pOperation_reqGameBegin.name = "reqGameBegin";
-			pOperation_reqGameBegin.methodUtype = 9;
-			pOperation_reqGameBegin.aliasID = -1;
-			pOperation_reqGameBegin.args = pOperation_reqGameBegin_args;
-
-			pOperationModule.methods["reqGameBegin"] = pOperation_reqGameBegin; 
-			pOperationModule.base_methods["reqGameBegin"] = pOperation_reqGameBegin;
-
-			pOperationModule.idbase_methods[pOperation_reqGameBegin.methodUtype] = pOperation_reqGameBegin;
-
-			//Dbg.DEBUG_MSG("EntityDef::initScriptModules: add(Operation), method(reqGameBegin / 9).");
-
-			List<DATATYPE_BASE> pOperation_reqLeaveRoom_args = new List<DATATYPE_BASE>();
-
-			Method pOperation_reqLeaveRoom = new Method();
-			pOperation_reqLeaveRoom.name = "reqLeaveRoom";
-			pOperation_reqLeaveRoom.methodUtype = 7;
-			pOperation_reqLeaveRoom.aliasID = -1;
-			pOperation_reqLeaveRoom.args = pOperation_reqLeaveRoom_args;
-
-			pOperationModule.methods["reqLeaveRoom"] = pOperation_reqLeaveRoom; 
-			pOperationModule.base_methods["reqLeaveRoom"] = pOperation_reqLeaveRoom;
-
-			pOperationModule.idbase_methods[pOperation_reqLeaveRoom.methodUtype] = pOperation_reqLeaveRoom;
-
-			//Dbg.DEBUG_MSG("EntityDef::initScriptModules: add(Operation), method(reqLeaveRoom / 7).");
+			//Dbg.DEBUG_MSG("EntityDef::initScriptModules: add(Operation), method(reqEnterRoom / 8).");
 
 			List<DATATYPE_BASE> pOperation_reqRoomList_args = new List<DATATYPE_BASE>();
 
 			Method pOperation_reqRoomList = new Method();
 			pOperation_reqRoomList.name = "reqRoomList";
-			pOperation_reqRoomList.methodUtype = 5;
+			pOperation_reqRoomList.methodUtype = 7;
 			pOperation_reqRoomList.aliasID = -1;
 			pOperation_reqRoomList.args = pOperation_reqRoomList_args;
 
@@ -408,11 +378,41 @@ namespace KBEngine
 
 			pOperationModule.idbase_methods[pOperation_reqRoomList.methodUtype] = pOperation_reqRoomList;
 
-			//Dbg.DEBUG_MSG("EntityDef::initScriptModules: add(Operation), method(reqRoomList / 5).");
+			//Dbg.DEBUG_MSG("EntityDef::initScriptModules: add(Operation), method(reqRoomList / 7).");
+
+			List<DATATYPE_BASE> pOperation_reqGameBegin_args = new List<DATATYPE_BASE>();
+
+			Method pOperation_reqGameBegin = new Method();
+			pOperation_reqGameBegin.name = "reqGameBegin";
+			pOperation_reqGameBegin.methodUtype = 5;
+			pOperation_reqGameBegin.aliasID = -1;
+			pOperation_reqGameBegin.args = pOperation_reqGameBegin_args;
+
+			pOperationModule.methods["reqGameBegin"] = pOperation_reqGameBegin; 
+			pOperationModule.cell_methods["reqGameBegin"] = pOperation_reqGameBegin;
+
+			pOperationModule.idcell_methods[pOperation_reqGameBegin.methodUtype] = pOperation_reqGameBegin;
+
+			//Dbg.DEBUG_MSG("EntityDef::initScriptModules: add(Operation), method(reqGameBegin / 5).");
+
+			List<DATATYPE_BASE> pOperation_reqLeaveRoom_args = new List<DATATYPE_BASE>();
+
+			Method pOperation_reqLeaveRoom = new Method();
+			pOperation_reqLeaveRoom.name = "reqLeaveRoom";
+			pOperation_reqLeaveRoom.methodUtype = 6;
+			pOperation_reqLeaveRoom.aliasID = -1;
+			pOperation_reqLeaveRoom.args = pOperation_reqLeaveRoom_args;
+
+			pOperationModule.methods["reqLeaveRoom"] = pOperation_reqLeaveRoom; 
+			pOperationModule.cell_methods["reqLeaveRoom"] = pOperation_reqLeaveRoom;
+
+			pOperationModule.idcell_methods[pOperation_reqLeaveRoom.methodUtype] = pOperation_reqLeaveRoom;
+
+			//Dbg.DEBUG_MSG("EntityDef::initScriptModules: add(Operation), method(reqLeaveRoom / 6).");
 
 			List<DATATYPE_BASE> pOperation_reqTrueSyncData_args = new List<DATATYPE_BASE>();
 			pOperation_reqTrueSyncData_args.Add(EntityDef.id2datatypes[2]);
-			pOperation_reqTrueSyncData_args.Add(EntityDef.id2datatypes[12]);
+			pOperation_reqTrueSyncData_args.Add(EntityDef.id2datatypes[11]);
 
 			Method pOperation_reqTrueSyncData = new Method();
 			pOperation_reqTrueSyncData.name = "reqTrueSyncData";

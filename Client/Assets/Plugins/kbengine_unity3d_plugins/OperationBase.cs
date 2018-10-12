@@ -28,7 +28,7 @@ namespace KBEngine
 		public abstract void onGameBeginResult(Byte arg1); 
 		public abstract void onLeaveRoomResult(Byte arg1); 
 		public abstract void onReqRoomList(ROOM_LIST arg1); 
-		public abstract void onTrueSyncData(Byte arg1, string arg2);
+		public abstract void onTrueSyncData(Byte arg1, byte[] arg2);
         public abstract void onAttached();
 
 
@@ -70,7 +70,7 @@ namespace KBEngine
 					break;
 				case 15:
 					Byte onTrueSyncData_arg1 = stream.readUint8();
-					string onTrueSyncData_arg2 = stream.readUnicode();
+					byte[] onTrueSyncData_arg2 = stream.readBlob();
 					onTrueSyncData(onTrueSyncData_arg1, onTrueSyncData_arg2);
 					break;
 				default:
